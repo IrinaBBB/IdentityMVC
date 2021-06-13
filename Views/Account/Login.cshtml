@@ -1,0 +1,39 @@
+﻿@model LoginViewModel
+
+<form asp-controller="Account" asp-action="Login" method="post" role="form">
+    <h4 class="text-secondary">Login</h4>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <!-- /.form-group -->
+    <div class="form-check mb-4">
+        <input class="form-check-input" asp-for="RememberMe">
+        <label class="form-check-label" asp-for="RememberMe">
+            @Html.DisplayNameFor(m => m.RememberMe)
+        </label>
+    </div>
+    <!-- /.form-check -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+    <!-- /.form-group -->
+</form>
+<p>
+    <a asp-action="Register">Register as a new user?</a>
+</p>
+<p>
+    <a asp-action="ForgotPassword">Forgot your password?</a>
+</p>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
