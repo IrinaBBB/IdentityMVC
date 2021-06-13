@@ -44,14 +44,15 @@ namespace IdentityManager.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnurl = null)
         {
+            ViewData["ReturnUrl"] = returnurl;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnurl = null)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +60,7 @@ namespace IdentityManager.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(returnurl);
                 }
                 else
                 {
@@ -70,8 +71,6 @@ namespace IdentityManager.Controllers
 
             return View(model);
         }
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
