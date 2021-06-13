@@ -60,7 +60,7 @@ namespace IdentityManager.Controllers
 
                 if (result.Succeeded)
                 {
-                    return Redirect(returnurl);
+                    return LocalRedirect(returnurl);
                 }
                 else
                 {
