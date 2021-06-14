@@ -1,6 +1,6 @@
 @model RegisterViewModel
 
-    <form asp-controller="Account" asp-action="Register" method="post" role="form">
+    <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
         <h4 class="text-secondary">Create a new account</h4>
         <div asp-validation-summary="All" class="text-danger"></div>
 
