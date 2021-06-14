@@ -30,6 +30,14 @@ namespace IdentityManager
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefultConnection"))
             );
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Configure<IdentityOptions>(opt =>
+            {
+                opt.Password.RequiredLength = 5;
+                opt.Password.RequireLowercase = true;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                opt.Lockout.MaxFailedAccessAttempts = 3;
+
+            });
             services.AddControllersWithViews();
         }
 
